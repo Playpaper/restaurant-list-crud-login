@@ -1,12 +1,22 @@
 // require express from node_modules
 const express = require('express')
-const app = express()
+// require handlebars from express-handlebars
+const exphbs = require('express-handlebars')
 
+const app = express()
 const port = 3000
+
+// set template engine
+app.engine('hbs', exphbs({
+  defaultLayout: 'main',
+  extname: '.hbs'
+}))
+
+app.set('view engine', 'hbs')
 
 // set routes
 app.get('/', (req, res) => {
-  res.send(`Hello It's my restaurant web app.`)
+  res.render('index')
 })
 
 // start and listen the server
