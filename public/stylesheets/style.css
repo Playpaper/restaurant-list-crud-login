@@ -22,10 +22,12 @@ header {
 }
 
 .search-bar .search-bar-outer {
+  position: relative;
   margin: 0 auto;
   max-width: 680px;
   background-color: #fce2cf;
   border-radius: 8px;
+  border-top-left-radius: 0;
   padding: 20px 30px;
   border: 1px solid #9b4b4b1a;
   margin-top: -60px;
@@ -35,6 +37,32 @@ header {
 .search-bar .search-bar-inner h4 {
   color: #9b4b4b;
   font-weight: 600;
+}
+
+.search-add-new {
+  position: absolute;
+  top: -35px;
+  left: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 105px;
+  height: 35px;
+  background: #9b4b4b;
+  transition: 0.3s;
+}
+
+.search-add-new span{
+  padding-left: 7px;
+  color: #fff;
+  font-weight: 800;
+  line-height: 35px;
+}
+
+.search-add-new:hover {
+  cursor: pointer;
+  background: #c95656;
+  height: 38px;
+  top: -38px;
 }
 
 .form-control::placeholder {
@@ -79,10 +107,6 @@ header {
   align-items: center;
 }
 
-.card-img-top {
-  width: 110%;
-}
-
 .card-title {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -92,6 +116,7 @@ header {
 
 .card .score {
   background: #ff8f0e;
+  padding: 6px;
 }
 
 .restaurant-category {
@@ -118,6 +143,34 @@ header {
   color: #fff;
 }
 
+.btn-delete-box {
+  display: inline;
+}
+
+.btn-panel {
+  list-style: none;
+}
+
+.btn-panel li {
+  float: right;
+  margin-left: 5px;
+}
+
+.btn-panel .btn{
+  font-size: 0.8rem;
+  padding: 3px 8px;
+}
+
+.btn.btn-dark {
+  background: #484848;
+  border-color: #484848;
+}
+
+.btn.btn-dark:hover {
+  background: #3d3d3d;
+  border-color: #3d3d3d;
+}
+
 .keyword-no-match {
   font-size: 18px;
   font-weight: 700;
@@ -128,42 +181,23 @@ header {
   font-weight: 900;
 }
 
-@media screen and (max-width: 1200px) {
-
-  .card-img-top {
-    width: 125%;
-  }
-}
-
-@media screen and (max-width: 992px) {
-  .card-img-top {
-    width: 175%;
-  }
-
-  /* .card .img-box {
-    height: 160px;
-  }*/
-}
 
 @media screen and (max-width: 768px) {
-  .card-img-top {
-    width: 112%;
-  }
-
   .restaurant-show-title {
     font-size: 2rem;
   }
 }
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 992px) {
+  .card .img-box {
+    height: 140px;
+  }
+}
+
+@media screen and (max-width: 768px) {
   .card .img-box {
     height: 300px;
   }
-
-  .card-img-top {
-    width: 100%;
-  }
-
 }
 
 /* Show page */
