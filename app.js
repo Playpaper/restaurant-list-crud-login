@@ -4,6 +4,8 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 // require mongoose
 const mongoose = require('mongoose')
+// require Restaurant model
+const Restaurant = require('./models/restaurant')
 
 const app = express()
 const port = 3000
@@ -26,12 +28,16 @@ app.engine('hbs', exphbs({
   defaultLayout: 'main',
   extname: '.hbs'
 }))
-
 app.set('view engine', 'hbs')
+
+app.use(express.static("public"))
 
 // set routes
 app.get('/', (req, res) => {
-  res.render('index')
+  Restaurant.find()
+    .lean()
+    .then(restaurants => res.render('index', { restaurants }))
+    .catch(error => console.error(error))
 })
 
 // start and listen the server
