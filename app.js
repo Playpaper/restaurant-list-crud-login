@@ -21,6 +21,7 @@ mongoose.connect(process.env.MONGODB_URI, {
   useUnifiedTopology: true,
   useFindAndModify: false
 })
+
 const db = mongoose.connection
 
 db.on('error', () => console.log('mongodb error !'))
@@ -78,7 +79,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
 })
 
 // update a restaurant
-app.put("/restaurants/:id", (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   const id = req.params.id
   Restaurant.findByIdAndUpdate(id, req.body)
     //可依照專案發展方向自定編輯後的動作，這邊是導向到瀏覽特定餐廳頁面
@@ -86,7 +87,18 @@ app.put("/restaurants/:id", (req, res) => {
     .catch(err => console.log(err))
 })
 
+// delete a restaurant
+app.delete('/restaurants/:id', (req, res) => {
+  const id = req.params.id
+  console.log('delete')
+  Restaurant.findById(id)
+    .then(restaurant => restaurant.remove())
+    .then(() => res.redirect('/'))
+    .catch(err => console.error(err))
+})
+
 // start and listen the server
 app.listen(port, () => {
   console.log(`The express server is listening on http://localhost:${port}`)
 })
+

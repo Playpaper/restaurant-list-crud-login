@@ -22,7 +22,7 @@
 <!-- restaurant list -->
 <div class="container mt-2 mb-5">
   {{#if restaurants}}
-    <div class="row">
+    <div id="restaurant-panel" class="row">
       {{#each restaurants}}
         <div class="col-md-4">
           {{!-- <a href="/restaurants/{{ this._id }}" class="text-secondary"> --}}
@@ -43,9 +43,10 @@
             </div>
             <ul class="btn-panel">
               <li>
-                <form action="" method="POST" class="btn-delete-box">
-                  <button class="btn btn-dark" type="submit">Delete</button>
-                </form>
+                <!-- Button trigger modal -->
+                <button type="button" data-id="{{ this._id }}" data-name="{{ this.name }}" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#confirmDelete">
+                  Delete
+                </button>
               </li>
               <li>
                 <a class="btn btn-secondary" href="/restaurants/{{ this._id }}">Detail</a>
@@ -60,6 +61,25 @@
       {{/each}}
     </div>
   {{/if}}
+  
+  <!-- Modal -->
+  <div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          請確認是否要刪除此筆餐廳 ?
+        </div>
+        <div id="rest-modal-body" class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <form name="delete_check_form" action="" method="POST" class="btn-delete-box">
+            <button class="btn btn-dark" type="submit">Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!--<div class="row justify-content-center text-center">
     <div class="col-6 mb-1">
