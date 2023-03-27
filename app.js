@@ -6,6 +6,8 @@ const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 // require Restaurant model
 const Restaurant = require('./models/restaurant')
+// method-override
+const methodOverride = require("method-override")
 
 const app = express()
 const port = 3000
@@ -16,7 +18,8 @@ if(process.env.NODE_ENV !== 'production'){
 }
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useFindAndModify: false
 })
 const db = mongoose.connection
 
@@ -31,6 +34,7 @@ app.engine('hbs', exphbs({
 app.set('view engine', 'hbs')
 
 app.use(express.static("public"))
+app.use(methodOverride("_method"))
 
 // set body-parser
 const bodyParser = require('body-parser')
@@ -41,27 +45,45 @@ app.get('/', (req, res) => {
   Restaurant.find()
     .lean()
     .then(restaurants => res.render('index', { restaurants }))
-    .catch(error => console.error(error))
+    .catch(err => console.error(err))
 })
 
 app.get('/restaurants/new', (req, res) => {
   res.render('new')
 })
 
+// create a new restaurant
 app.post('/restaurants/new', (req, res) => {
-  //console.log(req.body)
   Restaurant.create( req.body )
     .then(() => res.redirect('/'))
-    .catch(error => console.error(error))
+    .catch(err => console.error(err))
 })
 
+// browse a restaurant
 app.get('/restaurants/:id', (req, res) => {
   const id = req.params.id
-
   Restaurant.findById(id)
     .lean()
     .then(restaurant => res.render('detail', { restaurant }))
-    .catch(error => console.error(error))
+    .catch(err => console.error(err))
+})
+
+// edit a restaurant
+app.get('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  Restaurant.findById(id)
+    .lean()
+    .then(restaurant => res.render('edit', { restaurant }))
+    .catch(err => console.error(err))
+})
+
+// update a restaurant
+app.put("/restaurants/:id", (req, res) => {
+  const id = req.params.id
+  Restaurant.findByIdAndUpdate(id, req.body)
+    //可依照專案發展方向自定編輯後的動作，這邊是導向到瀏覽特定餐廳頁面
+    .then(() => res.redirect(`/restaurants/${id}`))
+    .catch(err => console.log(err))
 })
 
 // start and listen the server
