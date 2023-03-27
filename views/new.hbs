@@ -1,0 +1,94 @@
+<div class="container mt-5">
+  <form class="form-panel" action="/restaurants/new" method="POST">
+    <h4 class="fw-semibold">新增一筆餐廳</h4>
+    <div class="row g-2">
+      <div class="col-md-6">
+        <div class="form-floating">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-store"></i></span>
+            <div class="form-floating">
+              <input type="text" class="form-control" name="name" placeholder="請輸入名稱">
+              <label for="name">名稱</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-floating">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-store"></i></span>
+            <div class="form-floating">
+              <input type="text" class="form-control" name="name_en" placeholder="請輸入英文名稱">
+              <label for="name_en">英文名稱</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-floating">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-box"></i></span>
+            <div class="form-floating">
+              <input type="text" class="form-control" name="category" placeholder="請輸入分類">
+              <label for="category">分類</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-floating">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-mobile-alt pr-2"></i></span>
+            <div class="form-floating">
+              <input type="text" class="form-control" name="phone" placeholder="請輸入 電話">
+              <label for="phone">電話</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-floating">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-star"></i></span>
+            <div class="form-floating">
+              <input type="text" class="form-control" name="rating" placeholder="請輸入評分">
+              <label for="rating">評分</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="input-group">
+        <span class="input-group-text"><i class="fas fa-map-marker-alt pr-2"></i></span>
+        <div class="form-floating">
+          <input type="text" class="form-control" name="location" placeholder="請輸入地址">
+          <label for="location">地址</label>
+        </div>
+      </div>
+      <div class="input-group">
+        <span class="input-group-text"><i class="fa-solid fa-location-arrow"></i></span>
+        <div class="form-floating">
+          <input type="text" class="form-control" name="google_map" placeholder="請輸入 google map">
+          <label for="google_map"> google map</label>
+        </div>
+      </div>
+      <div class="input-group">
+        <span class="input-group-text"><i class="fa-solid fa-image"></i></span>
+        <div class="form-floating">
+          <input type="text" class="form-control" name="image" placeholder="請輸入圖片的網址">
+          <label for="image">圖片</label>
+        </div>
+      </div>
+      <div class="input-group">
+        <span class="input-group-text"><i class="fa-solid fa-pen"></i></span>
+        <div class="form-floating">
+          <input type="text" class="form-control" name="description" placeholder="請輸入敘述">
+          <label for="description">敘述</label>
+        </div>
+      </div>
+    </div>
+    <div class="btn-panel mt-3 mb-5">
+      <a href="/" class="btn btn-warning btn-m">Back</a>
+      <button type="submit" class="btn btn-dark btn-m">Create</button>
+    </div>
+  </form>
+</div>

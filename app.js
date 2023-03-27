@@ -32,6 +32,10 @@ app.set('view engine', 'hbs')
 
 app.use(express.static("public"))
 
+// set body-parser
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: true }))
+
 // set routes
 app.get('/', (req, res) => {
   Restaurant.find()
@@ -40,9 +44,20 @@ app.get('/', (req, res) => {
     .catch(error => console.error(error))
 })
 
+app.get('/restaurants/new', (req, res) => {
+  res.render('new')
+})
+
+app.post('/restaurants/new', (req, res) => {
+  //console.log(req.body)
+  Restaurant.create( req.body )
+    .then(() => res.redirect('/'))
+    .catch(error => console.error(error))
+})
+
 app.get('/restaurants/:id', (req, res) => {
   const id = req.params.id
-  
+
   Restaurant.findById(id)
     .lean()
     .then(restaurant => res.render('detail', { restaurant }))

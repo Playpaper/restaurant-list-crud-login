@@ -48,6 +48,7 @@ header {
   width: 105px;
   height: 35px;
   background: #9b4b4b;
+  text-decoration: none;
   transition: 0.3s;
 }
 
@@ -141,8 +142,6 @@ header {
 .btn-warning:first-child:hover,
 :not(.btn-warning-check)+.btn-warning:hover {
   color: #fff;
-  padding: 4px 12px;
-  font-weight: 800;
 }
 
 .btn-delete-box {
@@ -161,6 +160,12 @@ header {
 .btn-panel .btn{
   font-size: 0.8rem;
   padding: 3px 8px;
+}
+
+.btn-panel .btn.btn-m {
+  font-size: 1rem;
+  padding: 5px 10px;
+  font-weight: 600;
 }
 
 .btn.btn-dark {
@@ -183,6 +188,13 @@ header {
   font-weight: 900;
 }
 
+.form-panel {
+  padding: 0 150px;
+}
+
+.form-group{
+  margin: 20px 0;
+}
 
 @media screen and (max-width: 768px) {
   .restaurant-show-title {
@@ -193,6 +205,10 @@ header {
 @media screen and (max-width: 992px) {
   .card .img-box {
     height: 140px;
+  }
+
+  .form-panel {
+    padding: 0;
   }
 }
 
