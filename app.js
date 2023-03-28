@@ -101,91 +101,18 @@ app.delete('/restaurants/:id', (req, res) => {
 
 // search restaurants
 app.get('/search', (req, res) => {
-  // const keyword = req.query.keyword.trim()
   const { keyword, category, rating } = req.query
-  // res.render('index', { keyword, category, rating })
   Restaurant.find()
     .lean()
     .then(restaurants => {
       const filteredData = filterRestaurants(restaurants, keyword, category, rating)
-      console.log('filter')
       res.render('index', { 
         restaurants: filteredData ? filteredData : restaurants, 
         keyword 
       })
     })
     .catch(err => console.error(err))
-
-  // Restaurant.find()
-  //   .lean()
-  //   .then(restaurantsData => {
-  //     const restaurants = restaurantsData.filter(item => item.name.toLowerCase().includes(keyword.toLowerCase()) || item.category.includes(keyword) || item.rating >= Number(keyword))
-
-  //     // Restaurant category
-  //     const category = getRestaurantCategory(restaurantsData)
-  //     res.render('index', { restaurants, keyword, category })
-  //   })
-  
-  // filtered "name" or "category" which is included keyword or "rating" which is >= keyword
-  
 })
-
-// app.get("/search", (req, res) => {
-//   const { keyword, category, rating } = req.query;
-//   Restaurant.find()
-//     .lean()
-//     .then((restaurants) => {
-//       const filterData = filterRestaurants(
-//         restaurants,
-//         keyword,
-//         category,
-//         rating
-//       );
-//       let notFound = filterData.length ? false : true;
-//       res.render("index", {
-//         restaurants: filterData,
-//         keyword: keyword,
-//         category: category,
-//         rating: rating,
-//         notFound: notFound,
-//       });
-//     });
-// });
-
-function getRestaurantCategory(list) {
-  const aryCategory = []
-
-  list.forEach(item => {
-    if (!aryCategory.includes(item.category)) {
-      aryCategory.push(item.category)
-    }
-  })
-  return aryCategory
-}
-//搜尋結果的route
-// router.get("/search", (req, res) => {
-//   const keyword = req.query.keyword.trim().toLowerCase();
-//   const sortBy = req.query.sortBy || "_id";
-//   Restaurant.find()
-//     .lean()
-//     .sort(sortBy)
-//     .then((restaurantsData) => {
-//       let restaurants = restaurantsData.filter(
-//         (restaurant) =>
-//           restaurant.name.toLowerCase().includes(keyword) ||
-//           restaurant.category.includes(keyword)
-//       );
-//       const noResults = restaurants.length === 0;
-//       //如有搜尋到則維持原本的restaurant array, 沒有執行推薦3間餐廳的function
-//       restaurants = restaurants.length
-//         ? restaurants
-//         : recommendRestaurants(restaurantsData);
-
-//       res.render("index", { restaurants, keyword, noResults, sortBy });
-//     })
-//     .catch((e) => console.log(e));
-// });
-
 
 // start and listen the server
 app.listen(port, () => {
