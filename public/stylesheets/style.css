@@ -39,6 +39,15 @@ header {
   font-weight: 600;
 }
 
+.form-control.input-name {
+  flex-basis: 50%;
+}
+
+.form-select {
+  font-size: 12px;
+  text-align: center;
+}
+
 .search-add-new {
   position: absolute;
   top: -35px;
