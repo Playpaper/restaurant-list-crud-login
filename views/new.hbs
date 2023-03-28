@@ -29,7 +29,16 @@
           <div class="input-group">
             <span class="input-group-text"><i class="fa-solid fa-box"></i></span>
             <div class="form-floating">
-              <input type="text" class="form-control" name="category" placeholder="請輸入分類">
+              <select id="search-category" name="category" class="form-control" aria-label="select by category" {{#if
+                category}}data-value={{ category }} {{/if}}>
+                <option value="All">所有分類</option>
+                <option value="日本料理">日本料理</option>
+                <option value="義式餐廳">義式餐廳</option>
+                <option value="美式">美式</option>
+                <option value="咖啡">咖啡</option>
+                <option value="中東料理">中東料理</option>
+                <option value="酒吧">酒吧</option>
+              </select>
               <label for="category">分類</label>
             </div>
           </div>
@@ -74,14 +83,14 @@
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-image"></i></span>
         <div class="form-floating">
-          <input type="text" class="form-control" name="image" placeholder="請輸入圖片的網址">
+          <input type="text" class="form-control" name="image" value="https://raw.githubusercontent.com/Playpaper/restaurant-list-crud/main/public/images/notFound.png" placeholder="請輸入圖片的網址">
           <label for="image">圖片</label>
         </div>
       </div>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-pen"></i></span>
         <div class="form-floating">
-          <input type="text" class="form-control" name="description" placeholder="請輸入敘述">
+          <textarea class="form-control" aria-label="With textarea" name="description">{{ restaurant.description }}</textarea>
           <label for="description">敘述</label>
         </div>
       </div>
