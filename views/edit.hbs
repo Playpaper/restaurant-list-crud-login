@@ -1,6 +1,6 @@
-<h1 class="mb-1 restaurant-show-title">{{ restaurant.name }}</h1>
+<h1 class="mb-1 restaurant-show-title">{{ options.name }}</h1>
 <div class="container">
-  <form class="form-panel" action="/restaurants/{{ restaurant._id }}?_method=PUT" method="POST">
+  <form class="form-panel" action="/restaurants/{{ options._id }}?_method=PUT" method="POST">
     <h4 class="fw-semibold">修改餐廳資訊</h4>
     <div class="row g-2">
       <div class="col-md-6">
@@ -8,7 +8,7 @@
           <div class="input-group">
             <span class="input-group-text"><i class="fa-solid fa-store"></i></span>
             <div class="form-floating">
-              <input type="text" class="form-control" value="{{ restaurant.name }}" name="name">
+              <input type="text" class="form-control" value="{{ options.name }}" name="name">
               <label for="name">名稱</label>
             </div>
           </div>
@@ -19,7 +19,7 @@
           <div class="input-group">
             <span class="input-group-text"><i class="fa-solid fa-store"></i></span>
             <div class="form-floating">
-              <input type="text" class="form-control" value="{{ restaurant.name_en }}" name="name_en">
+              <input type="text" class="form-control" value="{{ options.name_en }}" name="name_en">
               <label for="name_en">英文名稱</label>
             </div>
           </div>
@@ -50,7 +50,7 @@
           <div class="input-group">
             <span class="input-group-text"><i class="fas fa-mobile-alt pr-2"></i></span>
             <div class="form-floating">
-              <input type="text" class="form-control" value="{{ restaurant.phone }}" name="phone">
+              <input type="text" class="form-control" value="{{ options.phone }}" name="phone">
               <label for="phone">電話</label>
             </div>
           </div>
@@ -61,7 +61,7 @@
           <div class="input-group">
             <span class="input-group-text"><i class="fa-solid fa-star"></i></span>
             <div class="form-floating">
-              <input type="text" class="form-control" value="{{ restaurant.rating }}" name="rating">
+              <input type="text" class="form-control" value="{{ options.rating }}" name="rating">
               <label for="rating">評分</label>
             </div>
           </div>
@@ -70,35 +70,40 @@
       <div class="input-group">
         <span class="input-group-text"><i class="fas fa-map-marker-alt pr-2"></i></span>
         <div class="form-floating">
-          <input type="text" class="form-control" value="{{ restaurant.location }}" name="location">
+          <input type="text" class="form-control" value="{{ options.location }}" name="location">
           <label for="location">地址</label>
         </div>
       </div>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-location-arrow"></i></span>
         <div class="form-floating">
-          <input type="text" class="form-control" value="{{ restaurant.google_map }}" name="google_map" >
+          <input type="text" class="form-control" value="{{ options.google_map }}" name="google_map" >
           <label for="google_map">google map</label>
         </div>
       </div>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-image"></i></span>
         <div class="form-floating">
-          <input type="text" class="form-control" value="{{ restaurant.image }}" name="image">
+          <input type="text" class="form-control" value="{{ options.image }}" name="image">
           <label for="image">圖片</label>
         </div>
       </div>
       <div class="input-group">
         <span class="input-group-text"><i class="fa-solid fa-pen"></i></span>
         <div class="form-floating">
-          <textarea class="form-control" aria-label="With textarea" name="description">{{ restaurant.description }}</textarea>
+          <textarea class="form-control" aria-label="With textarea" name="description">{{ options.description }}</textarea>
           <label for="description">敘述</label>
         </div>
       </div>
     </div>
-    <div class="btn-panel mt-3 mb-5">
+    <div class="btn-panel mt-3">
       <a href="javascript:history.back()" class="btn btn-warning btn-m">Back</a>
       <button type="submit" class="btn btn-dark btn-m">Modify</button>
     </div>
+    {{!-- {{#if}} --}}
+    <div class="alert alert-danger mt-3 mx-auto mb-5" role="alert">
+      {{ checkResult }}
+    </div>
+    {{!-- {{/if}} --}}
   </form>
 </div>

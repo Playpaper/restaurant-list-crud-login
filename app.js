@@ -10,7 +10,8 @@ const Restaurant = require('./models/restaurant')
 const methodOverride = require("method-override")
 // require filterRestaurant
 const filterRestaurants = require('./filterRestaurants.js')
-
+// require checkFormContent
+const checkFormContent = require('./checkFormContent.js')
 const app = express()
 const port = 3000
 
@@ -57,9 +58,15 @@ app.get('/restaurants/new', (req, res) => {
 
 // create a new restaurant
 app.post('/restaurants/new', (req, res) => {
-  Restaurant.create( req.body )
+  const options = req.body
+  const checkResult = checkFormContent(options)
+  if (checkResult === 'OK') {
+    Restaurant.create(options)
     .then(() => res.redirect('/'))
     .catch(err => console.error(err))
+  }else{
+    res.render('new', { checkResult, options })
+  }
 })
 
 // browse a restaurant
@@ -76,23 +83,28 @@ app.get('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   Restaurant.findById(id)
     .lean()
-    .then(restaurant => res.render('edit', { restaurant }))
+    .then(options => res.render('edit', { options }))
     .catch(err => console.error(err))
 })
 
 // update a restaurant
 app.put('/restaurants/:id', (req, res) => {
-  const id = req.params.id
-  Restaurant.findByIdAndUpdate(id, req.body)
-    //可依照專案發展方向自定編輯後的動作，這邊是導向到瀏覽特定餐廳頁面
-    .then(() => res.redirect(`/restaurants/${id}`))
-    .catch(err => console.log(err))
+  let options = req.body
+  options._id = req.params.id
+  const checkResult = checkFormContent(options)
+  if (checkResult === 'OK') {
+    Restaurant.findByIdAndUpdate(options._id, req.body)
+      //可依照專案發展方向自定編輯後的動作，這邊是導向到瀏覽特定餐廳頁面
+      .then(() => res.redirect(`/restaurants/${options._id}`))
+      .catch(err => console.log(err))
+  } else {
+    res.render('edit', { checkResult, options })
+  }
 })
 
 // delete a restaurant
 app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
-  console.log('delete')
   Restaurant.findById(id)
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
