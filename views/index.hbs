@@ -9,9 +9,8 @@
             <input type="text" name="keyword" class="form-control input-name" placeholder="請輸入餐廳中文/英文名稱" aria-label="Restaurant Name"
               value="{{ keyword }}" aria-describedby="search-button">
             <!-- category -->
-            <select id="search-category" name="category" class="form-control form-select" aria-label="select by category" {{#if
-              category}}data-value={{ category }} {{/if}}>
-              <option value="All">所有分類</option>
+            <select id="search-category" name="category" class="form-control form-select">
+              <option value="所有分類">所有分類</option>
               <option value="日本料理">日本料理</option>
               <option value="義式餐廳">義式餐廳</option>
               <option value="美式">美式</option>
@@ -20,9 +19,8 @@
               <option value="酒吧">酒吧</option>
             </select>
             <!-- rating -->
-            <select id="search-rating" name="rating" class="form-control form-select" aria-label="select by rating" {{#if
-              rating}}data-value={{ rating }} {{/if}}>
-              <option value="All">所有分數</option>
+            <select id="search-rating" name="rating" class="form-control form-select">
+              <option value="所有分數">所有分數</option>
               <option value="4.5">4.5 星以上</option>
               <option value="4">4 星以上</option>
               <option value="3.5">3.5 星以上</option>

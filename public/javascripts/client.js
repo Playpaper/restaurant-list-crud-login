@@ -22,8 +22,8 @@ function selectedOption() {
   const category = urlParams.get('category')
   const rating = urlParams.get('rating')
   
-  selectedCategory.value = category ? category : 'All'
-  selectedRating.value = rating ? rating : 'All'
+  selectedCategory.value = category ? category : '所有分類'
+  selectedRating.value = rating ? rating : '所有分數'
 }
 
 selectedOption()

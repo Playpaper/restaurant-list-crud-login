@@ -6,7 +6,7 @@ function filterRestaurants(restaurants, keyword, category, rating) {
   filteredData = filteredData.length ? filteredData : restaurants.filter(item => item.name_en.toLowerCase().includes(keyword.trim().toLowerCase()))
 
   // filter category
-  filteredData = (category === 'All') ? filteredData : filteredData.filter(item => item.category === category)
+  filteredData = (category === '所有分類') ? filteredData : filteredData.filter(item => item.category === category)
 
   //filter rating
   filteredData = (rating == 'All') ? filteredData : filteredData.filter(item => item.rating >= Number(rating) )

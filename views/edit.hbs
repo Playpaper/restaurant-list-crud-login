@@ -1,109 +1,72 @@
 <h1 class="mb-1 restaurant-show-title">{{ options.name }}</h1>
-<div class="container">
-  <form class="form-panel" action="/restaurants/{{ options._id }}?_method=PUT" method="POST">
-    <h4 class="fw-semibold">修改餐廳資訊</h4>
-    <div class="row g-2">
+<div class="container mb-5">
+  <form id="form" class="form-panel" action="/restaurants/{{ options._id }}?_method=PUT" method="POST" novalidate>
+    <h4 class="fw-semibold mb-3">修改餐廳資訊</h4>
+    <div class="row g-3">
       <div class="col-md-6">
-        <div class="form-floating">
-          <div class="input-group">
-            <span class="input-group-text"><i class="fa-solid fa-store"></i></span>
-            <div class="form-floating">
-              <input type="text" class="form-control" value="{{ options.name }}" name="name">
-              <label for="name">名稱</label>
-            </div>
-          </div>
+        <div class="input-group">
+          <label class="me-2" for="name">中文名稱 :</label>
+          <input type="text" class="form-control me-2" name="name" id="name" placeholder="請輸入中文名稱 ..."
+            value="{{ options.name }}" required>
         </div>
       </div>
       <div class="col-md-6">
-        <div class="form-floating">
-          <div class="input-group">
-            <span class="input-group-text"><i class="fa-solid fa-store"></i></span>
-            <div class="form-floating">
-              <input type="text" class="form-control" value="{{ options.name_en }}" name="name_en">
-              <label for="name_en">英文名稱</label>
-            </div>
-          </div>
+        <div class="input-group">
+          <label class="me-2" for="name_en">英文名稱 :</label>
+          <input type="text" class="form-control" name="name_en" id="name_en" placeholder="請輸入英文名稱 ..."
+            value="{{ options.name_en }}" required>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="form-floating">
-          <div class="input-group">
-            <span class="input-group-text"><i class="fa-solid fa-box"></i></span>
-            <div class="form-floating">
-              <select id="search-category" name="category" class="form-control" aria-label="select by category" {{#if
-                category}}data-value={{ category }} {{/if}}>
-                <option value="All">所有分類</option>
-                <option value="日本料理">日本料理</option>
-                <option value="義式餐廳">義式餐廳</option>
-                <option value="美式">美式</option>
-                <option value="咖啡">咖啡</option>
-                <option value="中東料理">中東料理</option>
-                <option value="酒吧">酒吧</option>
-              </select>
-              <label for="category">分類</label>
-            </div>
-          </div>
+        <div class="input-group">
+          <label class="me-2" for="category">分類 :</label>
+          <input list="categories" class="form-control form-border-radius me-2" name="category" id="category" value="{{ options.category }}" required>
+          <datalist id="categories">
+            <option value="所有分類">所有分類</option>
+            <option value="日本料理">日本料理</option>
+            <option value="義式餐廳">義式餐廳</option>
+            <option value="美式">美式</option>
+            <option value="咖啡">咖啡</option>
+            <option value="中東料理">中東料理</option>
+            <option value="酒吧">酒吧</option>
+          </datalist>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="form-floating">
-          <div class="input-group">
-            <span class="input-group-text"><i class="fas fa-mobile-alt pr-2"></i></span>
-            <div class="form-floating">
-              <input type="text" class="form-control" value="{{ options.phone }}" name="phone">
-              <label for="phone">電話</label>
-            </div>
-          </div>
+        <div class="input-group">
+          <label class="me-2" for="phone">電話 :</label>
+          <input id="phone" type="text" class="form-control me-2" name="phone" placeholder="ex : 02 333 2888" value="{{ options.phone }}" pattern="[0-9 \-()]*" required>
+          <div class="invalid-feedback">僅接受 : 數字、小括號、空格、-</div>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="form-floating">
-          <div class="input-group">
-            <span class="input-group-text"><i class="fa-solid fa-star"></i></span>
-            <div class="form-floating">
-              <input type="text" class="form-control" value="{{ options.rating }}" name="rating">
-              <label for="rating">評分</label>
-            </div>
-          </div>
+        <div class="input-group">
+          <label class="me-2" for="rating">評分 : <output name="amount" id="amount" for="rating">{{ options.rating }}</output></label>
+          <input id="rating" name="rating" type="range" class="form-range" min="0" max="5" step="0.1" value="{{ options.rating }}" oninput="amount.value=rating.value">
         </div>
       </div>
       <div class="input-group">
-        <span class="input-group-text"><i class="fas fa-map-marker-alt pr-2"></i></span>
-        <div class="form-floating">
-          <input type="text" class="form-control" value="{{ options.location }}" name="location">
-          <label for="location">地址</label>
-        </div>
+        <label class="me-2" for="location">地址 :</label>
+        <input id="location" type="text" class="form-control" name="location" value="{{ options.location }}" required>
       </div>
       <div class="input-group">
-        <span class="input-group-text"><i class="fa-solid fa-location-arrow"></i></span>
-        <div class="form-floating">
-          <input type="text" class="form-control" value="{{ options.google_map }}" name="google_map" >
-          <label for="google_map">google map</label>
-        </div>
+        <label class="me-2" for="google_map">google map :</label>
+        <input id="google_map" type="text" class="form-control" name="google_map" value="{{ options.google_map }}"
+          required>
       </div>
       <div class="input-group">
-        <span class="input-group-text"><i class="fa-solid fa-image"></i></span>
-        <div class="form-floating">
-          <input type="text" class="form-control" value="{{ options.image }}" name="image">
-          <label for="image">圖片</label>
-        </div>
+        <label class="me-2" for="image">圖片 :</label>
+        <input id="image" type="text" class="form-control" name="image" {{#if options.image}} value="{{ options.image }}" {{else}}value="https://raw.githubusercontent.com/Playpaper/restaurant-list-crud/main/public/images/notFound.png" {{/if}} pattern="https://.*" size="30" required>
       </div>
       <div class="input-group">
-        <span class="input-group-text"><i class="fa-solid fa-pen"></i></span>
-        <div class="form-floating">
-          <textarea class="form-control" aria-label="With textarea" name="description">{{ options.description }}</textarea>
-          <label for="description">敘述</label>
-        </div>
+        <label class="me-2" for="description">敘述 :</label>
+        <textarea id="description" class="form-control" name="description" rows="3" required>{{ options.description }}</textarea>
       </div>
     </div>
     <div class="btn-panel mt-3">
       <a href="javascript:history.back()" class="btn btn-warning btn-m">Back</a>
-      <button type="submit" class="btn btn-dark btn-m">Modify</button>
+      <button id="btn-submit" type="submit" class="btn btn-dark btn-m">Modify</button>
     </div>
-    {{!-- {{#if}} --}}
-    <div class="alert alert-danger mt-3 mx-auto mb-5" role="alert">
-      {{ checkResult }}
-    </div>
-    {{!-- {{/if}} --}}
   </form>
 </div>
+<script src="/javascripts/formcheck.js"></script>
