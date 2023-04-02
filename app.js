@@ -1,12 +1,9 @@
 // require express from node_modules
 const express = require('express')
-// require handlebars from express-handlebars
 const exphbs = require('express-handlebars')
-// require method-override
 const methodOverride = require("method-override")
-// require routes
+const helpers = require("./public/javascripts/helpers");
 const routes = require('./routes')
-// require mongoose
 require('./config/mongoose')
 
 const app = express()

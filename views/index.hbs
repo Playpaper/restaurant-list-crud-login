@@ -2,29 +2,47 @@
 <div class="container search-bar">
   <div class="search-bar-outer">
     <div class="search-bar-inner">
+      <div class="row mb-2 justify-content-between">
+        <div class="col-4">
+          <h4 class="mt-1">尋找餐廳：</h4>
+        </div>
+        <div class="col-4">
+          <div class="input-group">
+            <!-- sort -->
+            <select id="select-sort" name="category" class="form-control form-select">
+              <option data-kind="name" value="asc" {{selected kind "name" sort "asc"}}>店家名稱 ( A > Z )</option>
+              <option data-kind="name" value="desc" {{selected kind "name" sort "desc"}}>店家名稱 ( Z > A )</option>
+              <option data-kind="rating" value="desc" {{selected kind "rating" sort "desc" }}>評分 ( 高 > 低 ) </option>
+              <option data-kind="rating" value="asc" {{selected kind "rating" sort "asc" }}>評分 ( 低 > 高 ) </option>
+              <option data-kind="category" value="asc" {{selected kind "category" sort "asc" }}>類別</option>
+              <option data-kind="location" value="asc" {{selected kind "location" sort "asc" }}>地區</option>
+              Rating(高>低)
+            </select>
+          </div>
+        </div>
+      </div>
       <form action="/search">
-        <h4 class="mb-2">尋找餐廳：</h4>
         <div class="row g-0">
           <div class="input-group">
-            <input type="text" name="keyword" class="form-control input-name" placeholder="請輸入餐廳中文/英文名稱" aria-label="Restaurant Name"
+            <input id="search-keyword" type="text" name="keyword" class="form-control input-name" placeholder="請輸入餐廳中文/英文名稱" aria-label="Restaurant Name"
               value="{{ keyword }}" aria-describedby="search-button">
             <!-- category -->
             <select id="search-category" name="category" class="form-control form-select">
-              <option value="所有分類">所有分類</option>
-              <option value="日本料理">日本料理</option>
-              <option value="義式餐廳">義式餐廳</option>
-              <option value="美式">美式</option>
-              <option value="咖啡">咖啡</option>
-              <option value="中東料理">中東料理</option>
-              <option value="酒吧">酒吧</option>
+              <option value="所有分類" {{search category "所有分類"}}>所有分類</option>
+              <option value="日本料理" {{search category "日本料理"}}>日本料理</option>
+              <option value="義式餐廳" {{search category "義式餐廳"}}>義式餐廳</option>
+              <option value="美式" {{search category "美式"}}>美式</option>
+              <option value="咖啡" {{search category "咖啡"}}>咖啡</option>
+              <option value="中東料理" {{search category "中東料理"}}>中東料理</option>
+              <option value="酒吧" {{search category "酒吧"}}>酒吧</option>
             </select>
             <!-- rating -->
             <select id="search-rating" name="rating" class="form-control form-select">
-              <option value="所有分數">所有分數</option>
-              <option value="4.5">4.5 星以上</option>
-              <option value="4">4 星以上</option>
-              <option value="3.5">3.5 星以上</option>
-              <option value="3">3 星以上</option>
+              <option value="所有分數" {{search rating "所有分數"}}>所有分數</option>
+              <option value="4.5" {{search rating "4.5"}}>4.5 星以上</option>
+              <option value="4" {{search rating "4"}}>4 星以上</option>
+              <option value="3.5" {{search rating "3.5"}}>3.5 星以上</option>
+              <option value="3" {{search rating "3"}}>3 星以上</option>
             </select>
             <div class="input-group-append">
               <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
@@ -69,7 +87,7 @@
                 </button>
               </li>
               <li>
-                <a class="btn btn-secondary" href="/restaurants/{{ this._id }}">Detail</a>
+                <a class="btn btn-secondary" href="/restaurants/{{ this._id }}?_method=PUT">Detail</a>
               </li>
               <li>
                 <a class="btn btn-secondary" href="/restaurants/{{ this._id }}/edit">Edit</a>
@@ -121,3 +139,4 @@
   -->
   
 </div>
+<script src="/javascripts/client.js"></script>

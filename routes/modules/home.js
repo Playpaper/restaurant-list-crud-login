@@ -3,9 +3,19 @@ const router = express.Router()
 const Restaurant = require('../../models/restaurant')
 
 router.get('/', (req, res) => {
+  let { kind, sort, category, rating } = req.query
+  const objSort = {}
+
+  // 可能會沒有帶 query string
+  kind = kind ? kind : 'name'
+  sort = sort ? sort :'asc'
+  
+  objSort[kind] = sort
+  
   Restaurant.find()
     .lean()
-    .then(restaurants => res.render('index', { restaurants }))
+    .sort(objSort)
+    .then(restaurants => res.render('index', { restaurants, kind, sort, category, rating }))
     .catch(err => console.error(err))
 })
 
