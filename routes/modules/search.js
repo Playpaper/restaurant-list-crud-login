@@ -9,6 +9,7 @@ router.get('/', (req, res) => {
   const { keyword, category, rating } = req.query
   let { kind, sort } = req.query
   const objSort = {}
+  const userId = req.user._id
 
   // 可能會沒有帶 query string
   kind = kind ? kind : 'name'
@@ -16,7 +17,7 @@ router.get('/', (req, res) => {
 
   objSort[kind] = sort
 
-  Restaurant.find()
+  Restaurant.find({ userId })
     .lean()
     .sort(objSort)
     .then(restaurants => {
