@@ -5,12 +5,14 @@
       {{> message}}
       <form action="/users/login" method="POST" novalidate>
         <div class="form-group mt-0">
-          <label for="email">Email : </label>
+          <label for="email"><span class="text-danger">*</span> Email : </label>
           <input class="mt-2 form-control" type="email" name="email" id="email" placeholder="Enter email" required>
+          <div class="invalid-feedback text-end">必填</div>
         </div>
         <div class="form-group">
-          <label for="password">Password : </label>
+          <label for="password"><span class="text-danger">*</span> Password : </label>
           <input class="mt-2 form-control" type="password" name="password" id="password" placeholder="Enter password" required>
+          <div class="invalid-feedback text-end">必填</div>
         </div>
         <div class="form-group">
           <button type="submit" class="btn btn-warning">Login</button>

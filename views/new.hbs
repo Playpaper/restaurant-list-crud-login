@@ -4,19 +4,21 @@
     <div class="row g-3">
       <div class="col-md-6">
         <div class="input-group">
-          <label class="me-2" for="name">中文名稱 :</label>
-          <input type="text" class="form-control me-2" name="name" id="name" placeholder="請輸入中文名稱 ..." value="{{ options.name }}" required>
+          <label class="me-2" for="name"><span class="text-danger">*</span> 中文名稱 :</label>
+          <input type="text" class="form-control me-2" name="name" id="name" maxlength="20" placeholder="請輸入中文名稱 ..." value="{{ options.name }}" required>
+          <div class="invalid-feedback text-end me-2">必填，字數需在20字以內</div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="input-group">
-          <label class="me-2" for="name_en">英文名稱 :</label>
-          <input type="text" class="form-control" name="name_en" id="name_en" placeholder="請輸入英文名稱 ..." value="{{ options.name_en }}" required>
+          <label class="me-2" for="name_en"><span class="text-danger">*</span> 英文名稱 :</label>
+          <input type="text" class="form-control" name="name_en" id="name_en" maxlength="30" placeholder="請輸入英文名稱 ..." value="{{ options.name_en }}" required>
+          <div class="invalid-feedback text-end">必填，字數需在30字以內</div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="input-group">
-          <label class="me-2" for="category">分類 :</label>
+          <label class="me-2" for="category"><span class="text-danger">*</span> 分類 :</label>
           <input list="categories" class="form-control form-border-radius me-2" name="category" id="category" value="{{ options.category }}" required>
           <datalist id="categories">
             <option value="所有分類">所有分類</option>
@@ -27,13 +29,14 @@
             <option value="中東料理">中東料理</option>
             <option value="酒吧">酒吧</option>
           </datalist>
+          <div class="invalid-feedback text-end me-2">請選擇分類或自創分類</div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="input-group">
-          <label class="me-2" for="phone">電話 :</label>
+          <label class="me-2" for="phone"><span class="text-danger">*</span> 電話 :</label>
           <input id="phone" type="text" class="form-control me-2" name="phone" placeholder="ex : 02 333 2888"  value="{{ options.phone }}" pattern="[0-9 \-()]*" required>
-          <div class="invalid-feedback">僅接受 : 數字、小括號、空格、-</div>
+          <div class="invalid-feedback text-end">僅接受 : 數字、小括號、空格、-</div>
         </div>
       </div>
       <div class="col-md-4">
@@ -44,20 +47,24 @@
         </div>
       </div>
       <div class="input-group">
-        <label class="me-2" for="location">地址 :</label>
-        <input id="location" type="text" class="form-control" name="location" value="{{ options.location }}" required>
+        <label class="me-2" for="location"><span class="text-danger">*</span> 地址 :</label>
+        <input id="location" type="text" class="form-control" name="location" maxlength="30" value="{{ options.location }}" required>
+        <div class="invalid-feedback text-end">必填，字數需在30字以內</div>
       </div>
       <div class="input-group">
         <label class="me-2" for="google_map">google map :</label>
-        <input id="google_map" type="text" class="form-control" name="google_map" value="{{ options.google_map }}" required>
+        <input id="google_map" type="text" class="form-control" name="google_map" value="{{ options.google_map }}" pattern="https*://.*" required>
+        <div class="invalid-feedback text-end">必填，需為http/https</div>
       </div>
       <div class="input-group">
-        <label class="me-2" for="image">圖片 :</label>
-        <input id="image" type="text" class="form-control" name="image" {{#if options.image}}value="{{ options.image }}" {{else}}value="https://raw.githubusercontent.com/Playpaper/restaurant-list-crud/main/public/images/notFound.png" {{/if}} pattern="https://.*" size="30" required>
+        <label class="me-2" for="image"><span class="text-danger">*</span> 圖片 :</label>
+        <input id="image" type="text" class="form-control" name="image" {{#if options.image}}value="{{ options.image }}" {{else}}value="https://raw.githubusercontent.com/Playpaper/restaurant-list-crud/main/public/images/notFound.png" {{/if}} pattern="https*://.*" size="30" required>
+        <div class="invalid-feedback text-end">必填，需為http/https</div>
       </div>
       <div class="input-group">
-        <label class="me-2" for="description">敘述 :</label>
-        <textarea id="description" class="form-control" name="description" value="{{ options.description }}" rows="3" required>{{ restaurant.description }}</textarea>
+        <label class="me-2" for="description"><span class="text-danger">*</span> 敘述 :</label>
+        <textarea id="description" class="form-control" name="description" value="{{ options.description }}" maxlength="150" rows="3" required>{{ restaurant.description }}</textarea>
+        <div class="invalid-feedback text-end">必填，字數需在150字以內</div>
       </div>
     </div>
     <div class="btn-panel mt-3">

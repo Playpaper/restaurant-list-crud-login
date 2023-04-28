@@ -55,9 +55,14 @@ form.was-validated textarea:invalid {
 }
 
 /* 驗證通過 */
-form.was-validated input:valid[type="text"],
-form.was-validated textarea:valid {
-  border: 1px solid green;
+.form-control.is-valid,
+.was-validated .form-control:valid {
+  border-color: #dee2e6;
+}
+
+.form-control.is-valid,
+.was-validated .form-control:valid {
+  background-image: none;
 }
 
 .search-add-new {

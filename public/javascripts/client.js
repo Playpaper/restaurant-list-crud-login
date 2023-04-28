@@ -27,18 +27,3 @@ selectSort.addEventListener('change', function detectSortChange(e) {
   window.location.href = `/search?keyword=${keyword}&category=${category}&rating=${rating}&kind=${kind}&sort=${sort}`
 })
 
-// show category and rating option selected
-// function selectedOption() {
-//   const selectedCategory = document.querySelector('#search-category')
-//   const selectedRating = document.querySelector('#search-rating')
-
-  // const queryString = window.location.search
-  // const urlParams = new URLSearchParams(queryString)
-  // const category = urlParams.get('category')
-  // const rating = urlParams.get('rating')
-  
-  // selectedCategory.value = category ? category : '所有分類'
-  // selectedRating.value = rating ? rating : '所有分數'
-// }
-
-// selectedOption()
