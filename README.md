@@ -1,12 +1,14 @@
-## 我的餐廳清單 (S2-3 CRUD)
+## 我的餐廳清單 (S3 CRUD-Login)
 
 ## 專案畫面
 
-![This is an image](https://github.com/Playpaper/restaurant-list-crud/blob/main/public/images/home.png)
-![This is an image](https://github.com/Playpaper/restaurant-list-crud/blob/main/public/images/detail.png)
-![This is an image](https://github.com/Playpaper/restaurant-list-crud/blob/main/public/images/new.png)
+![This is an image](https://github.com/Playpaper/restaurant-list-crud-login/blob/main/public/images/login.png)
+![This is an image](https://github.com/Playpaper/restaurant-list-crud-login/blob/main/public/images/home.png)
+![This is an image](https://github.com/Playpaper/restaurant-list-crud-login/blob/main/public/images/detail.png)
+![This is an image](https://github.com/Playpaper/restaurant-list-crud-login/blob/main/public/images/new.png)
 
 ## Features - 產品功能
+提供客製化餐廳收藏清單，使用者可以透過註冊新帳號或連結FB等方式登入，登入後的會員可享有以下服務 :
 :one: 使用者可以瀏覽所有的餐廳。
 
 :two: 使用者可以瀏覽一家餐廳的詳細資訊。
@@ -24,7 +26,7 @@
 - Framework : Express@4.17.1
 - Template Engine : Express-handlebars@4.0.2
 - Database : MongoDB + mongoose@5.9.7
-> :heavy_check_mark : Check package.json for other dependencies
+> :heavy_check_mark: Check package.json for other dependencies
 
 ## Installing - 專案安裝流程
 :one: 開啟終端機, 複製此專案至本機電腦:
