@@ -52,4 +52,16 @@ router.get('/logout', (req, res) => {
   res.redirect('/users/login')
 })
 
+router.get('/test', (req, res, next) => { 
+  User.find()
+    .then(() => {
+      throw new Error('fake !')
+    })
+    .catch(next)  // -> 給處理 error middleware(若沒自己寫，expressjs 在最後有一個預設的)}
+    .then((err) => {
+      res.status(500)
+      res.render('error', { error: err })
+    })
+})
+
 module.exports = router

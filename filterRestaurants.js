@@ -9,7 +9,7 @@ function filterRestaurants(restaurants, keyword, category, rating) {
   filteredData = (category === '所有分類') ? filteredData : filteredData.filter(item => item.category === category)
 
   //filter rating
-  filteredData = (rating == '所有分數') ? filteredData : filteredData.filter(item => item.rating >= Number(rating) )
+  filteredData = (rating == '0') ? filteredData : filteredData.filter(item => item.rating >= Number(rating) )
 
   return filteredData
 }

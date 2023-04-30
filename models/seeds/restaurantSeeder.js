@@ -9,7 +9,7 @@ db.once('open', () => {
 
   Promise.all(
     seedUsers.map(seedUser => {
-    bcrypt
+    return bcrypt
       .genSalt(10)
       .then(salt => bcrypt.hash(seedUser.password, salt))
       .then(hash => {
@@ -18,7 +18,7 @@ db.once('open', () => {
           email: seedUser.email,
           password: hash
         })
-        .catch(err => console.log(err))
+        .catch(console.error)
       })
       .then(user => {
         console.log('user = ', user.email)
@@ -29,14 +29,21 @@ db.once('open', () => {
       })
       .then(userRestaurants => {
         return Restaurant.create(userRestaurants)
+          .catch(console.error)
       })
+      .then((data) => data.length) // 每位使用著寫進DB的餐廳筆數
+      .catch(console.error)
     })
   )
-  .then(() => {
+  .then((data) => {
+    console.log(data)
     console.log('Done !')
-    // process.exit()
   })
-  .catch(err => console.log(err))
+  .catch(console.error)
+  .finally(() => {
+    process.exit() // 強制中斷 process 
+    // db.close() // 正常關連線
+  })
 })
   
 
