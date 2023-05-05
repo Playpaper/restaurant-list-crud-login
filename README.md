@@ -8,18 +8,18 @@
 ![This is an image](https://github.com/Playpaper/restaurant-list-crud-login/blob/main/public/images/new.png)
 
 ## Features - 產品功能
-提供客製化餐廳收藏清單，使用者可以透過註冊新帳號或連結FB等方式登入，登入後的會員可享有以下服務 :
-:one: 使用者可以瀏覽所有的餐廳。
+提供您紀錄日常支出，將所有支出分類，方便您掌握金錢的流向，使用者可以透過註冊新帳號或連結FB等方式登入，登入後的會員可享有以下服務 :
+:one: 使用者可以瀏覽所有的支出。
 
-:two: 使用者可以瀏覽一家餐廳的詳細資訊。
+:two: 使用者可以瀏覽支出的詳細資訊。
 
-:three: 使用者可以新增一家餐廳。
+:three: 使用者可以新增一筆支出。
 
-:four: 使用者可以修改一家餐廳的資訊。
+:four: 使用者可以修改支出的資訊。
 
-:five: 使用者可以刪除一家餐廳。
+:five: 使用者可以刪除支出。
 
-:six: 使用者可以依 "餐廳中/英文名稱、分類、評分" 等組合搜尋。
+:six: 使用者可以依 "分類" 搜尋該分類支出的總額。
 
 ## Environment SetUp - 環境建置
 - Runtime : Node.js
